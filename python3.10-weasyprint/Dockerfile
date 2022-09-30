@@ -3,7 +3,7 @@
 FROM ubuntu:22.04
 
 # Set timezone
-ENV TZ Asia/Shanghai
+ENV TZ America/Toronto
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Set LANG
@@ -21,11 +21,17 @@ RUN apt-get update -y && apt-get install -y \
     gettext iputils-ping telnet net-tools vim curl zsh git \
     && apt-get autoremove -y && apt-get autoclean -y && rm -rf /var/lib/apt/lists/*
 
-RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3 -
+# Install pypoetry
+RUN curl -sSL https://install.python-poetry.org | python3 -
+ENV PATH="/root/.local/bin:$PATH"
 
-ENV PATH="$PATH:/root/.poetry/bin"
-
+# install oh-my-zsh
 RUN wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O - | zsh || true
+
+# zsh plugin for poetry
+RUN mkdir /root/.oh-my-zsh/custom/plugins/poetry \
+    && poetry completions zsh > /root/.oh-my-zsh/custom/plugins/poetry/_poetry \
+    && sed -i 's/plugins=(git)/plugins=(git poetry)/g' /root/.zshrc
 
 # Project initalization
 RUN mkdir /code
