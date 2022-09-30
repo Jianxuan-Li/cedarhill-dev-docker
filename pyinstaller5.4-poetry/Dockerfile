@@ -19,4 +19,4 @@ RUN apt-get update -y && apt-get install -y \
     && apt-get remove -y curl \
     && apt-get autoremove -y && apt-get autoclean -y && rm -rf /var/lib/apt/lists/*
 
-ENV PATH="$PATH:/root/.poetry/bin"
+ENV PATH="/root/.local/bin:$PATH"
