@@ -16,7 +16,7 @@ RUN apt-get update -y && apt-get install -y \
     # For postgis and Django gis
     gdal-bin python3-gdal libgdal-dev \
     # For weasyprint
-    python3-cffi python3-brotli libpango-1.0-0 libharfbuzz0b libpangoft2-1.0-0 \
+    python3-cffi python3-brotli libpango-1.0-0 libharfbuzz0b libpangoft2-1.0-0 libjpeg-dev libopenjp2-7-dev libffi-dev \
     # Other utils
     gettext iputils-ping telnet net-tools vim curl zsh git \
     && apt-get autoremove -y && apt-get autoclean -y && rm -rf /var/lib/apt/lists/*
