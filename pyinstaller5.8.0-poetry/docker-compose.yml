@@ -5,4 +5,4 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: freeyeti/cedarhill-dev:pyinstaller5.4-poetry
+    image: freeyeti/cedarhill-dev:pyinstaller5.8.0-poetry

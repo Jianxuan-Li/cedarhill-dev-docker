@@ -22,7 +22,7 @@ RUN apt-get update -y && apt-get install -y \
     && apt-get autoremove -y && apt-get autoclean -y && rm -rf /var/lib/apt/lists/*
 
 # Install pypoetry
-RUN curl -sSL https://install.python-poetry.org | python3 -
+RUN curl -sSL https://install.python-poetry.org | POETRY_VERSION=1.3.2 python3 -
 ENV PATH="/root/.local/bin:$PATH"
 
 # install oh-my-zsh
