@@ -1,6 +1,6 @@
 # Docker file for Python GIS development
 # Do not use this image in production
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 
 # Set timezone
 ENV TZ America/Toronto
@@ -12,17 +12,17 @@ ENV LANG C.UTF-8
 ENV LANGUAGE en_US:en
 
 RUN apt-get update -y && apt-get install -y \ 
-    wget python3.10 python3-pip python3-venv \
+    wget python3 python3-pip python3-venv \
     # For postgis and Django gis
     gdal-bin python3-gdal libgdal-dev \
     # For weasyprint
-    python3-cffi python3-brotli libpango-1.0-0 libharfbuzz0b libpangoft2-1.0-0 libjpeg-dev libopenjp2-7-dev libffi-dev \
+    libpango-1.0-0 libharfbuzz0b libpangoft2-1.0-0 libharfbuzz-subset0 libffi-dev libjpeg-dev libopenjp2-7-dev \
     # Other utils
     gettext iputils-ping telnet net-tools vim curl zsh git \
     && apt-get autoremove -y && apt-get autoclean -y && rm -rf /var/lib/apt/lists/*
 
 # Install pypoetry
-RUN curl -sSL https://install.python-poetry.org | POETRY_VERSION=1.3.2 python3 -
+RUN curl -sSL https://install.python-poetry.org | POETRY_VERSION=1.8.4 python3 -
 ENV PATH="/root/.local/bin:$PATH"
 
 # install oh-my-zsh

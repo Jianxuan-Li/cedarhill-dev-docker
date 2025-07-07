@@ -1,8 +1,6 @@
-version: "3.5"
-
 services:
   stack-build:
     build:
       context: .
       dockerfile: Dockerfile
-    image: freeyeti/cedarhill-dev:python3.10-weasyprint
+    image: freeyeti/cedarhill-dev:pyinstaller5.13.2-poetry-1.8.4
